@@ -1,0 +1,184 @@
+fun main() {
+  do {
+    println("1) Поменять местами значения при помощи промежуточной переменной")
+    println("2) Поменять значения без промежуточной переменной")
+    println("3) Вырезать из 4-хзначного числа 2 и 3 элемент")
+    println("4) Определение полных часов и минут по k секунде суток")
+    println("5) Найти сумму, произведение и сред.арифм. 3-х целых чисел")
+    println("6) Возвезти число в 10 степень, только за 4 операции умножения")
+    println("7) Определить время окончания n-го урока")
+    println("8) Найти сумму 1х двух цифр, средних и последних 2х и их произведение")
+    println("9) Сортировка методом \"Пузыря\"")
+    println("0) Выход")
+    var x = readLine()!!.toInt()
+    when (x) {
+      1 -> func1()
+      2 -> func2()
+      3 -> func3()
+      4 -> func4()
+      5 -> func5()
+      6 -> func6()
+      7 -> func7()
+      8 -> func8()
+      9 -> func9()
+      0 -> println("Пока-пока!")
+      else -> {
+        println("Некорректное значение!\n")
+      }
+    }
+  } while (x != 0)
+}
+
+fun func1(): Int {
+  print("1)  a = ")
+  var a = readLine()!!.toInt()
+  print("\tb = ")
+  var b = readLine()!!.toInt()
+  var c: Int = a
+  a = b
+  b = c
+  println("\ta = $a\n\tb = $b\n")
+  return 0
+}
+
+fun func2() {
+  print("2)  a = ")
+  var a = readLine()!!.toInt()
+  print("\tb = ")
+  var b = readLine()!!.toInt()
+  a = a + b
+  b = a - b
+  a = a - b
+  println("\ta = $a\n\tb = $b\n")
+}
+
+fun func3(): Int {
+  var a: Int
+  print("3)  Введите четырёхзначное число: ")
+  a = readLine()!!.toInt()
+  if (a < 1000 || a > 9999) {
+    func3()
+  } else {
+    var b: Int = a / 1000
+    b *= 1000
+    a -= b
+    a /= 10
+    println("\t$a\n")
+  }
+  return 0
+}
+
+fun func4() {
+  println("4) Введите кол-во секунд от начала суток:")
+  var a: Int
+  a = readLine()!!.toInt()
+  var b = a / 3600
+  var c = (a - (b * 3600)) / 60
+  print("--> $b:")
+  if (c < 10) {
+    print("0$c\n\n")
+  } else {
+    print("$c\n\n")
+  }
+}
+
+fun func5() {
+  println("5) Введите 3 целых числа:")
+  print("a = ")
+  var a = readLine()!!.toInt()
+  print("b = ")
+  var b = readLine()!!.toInt()
+  print("c = ")
+  var c = readLine()!!.toInt()
+  var sum = a + b + c
+  println("Сумма = $sum")
+  println("Произведение = " + (a * b * c))
+  println("Среднее арифметическое = " + (sum / 3) + "\n")
+}
+
+fun func6() {
+  print("6) Введите число: ")
+  var a = readLine()!!.toInt()
+  var b = a * a
+  var c = b * b * a
+  var d = c * c
+  println("1. $a * $a = $b")
+  println("2. $b * $b = " + b * b)
+  println("3. " + b * b + " * $a = $c")
+  println("4. $c * $c = $d\n")
+}
+
+fun func7() {
+  print("7) Введите номер урока: ")
+  var a = readLine()!!.toInt()
+  if (a > 0 && a < 7) {
+    var b = 510 + (45 * a) + (10 * a - 10)
+    var c = b / 60
+    var d = b - c * 60
+    print("--> $a урок заканчивается в $c:")
+    if (d < 10) {
+      print("0$d\n\n")
+    } else {
+      print("$d\n\n")
+    }
+  } else {
+    func7()
+  }
+}
+
+fun func8() {
+  print("8) Введите четырёхзначное число: ")
+  var x = readLine()!!.toInt()
+  if (x >= 1000 && x <= 9999) {
+    var a: Int = x / 1000
+    var b: Int = (x - (a * 1000)) / 100
+    var c: Int = ((x - (a * 1000)) - b * 100) / 10
+    var d: Int = ((x - (a * 1000)) - b * 100) - c * 10
+    var s1 = a + b
+    var s2 = b + c
+    var s3 = c + d
+    println("1. $a + $b = $s1")
+    println("2. $b + $c = $s2")
+    println("3. $c + $d = $s3")
+    println("4. $s1 * $s2 * $s3 = " + (s1 * s2 * s3) + "\n")
+  } else {
+    func8()
+  }
+}
+
+fun func9() {
+  var arr1 = arrayOf(5, 4, 3, 2, 1, 6, 7, 8, 9, 10)
+  var arr2 = arrayOf(5, 4, 3, 2, 1, 6, 7, 2, 8, 9, 2, 10)
+  print("Массив arr1: ")
+  printArr(arr1)
+  bubbleSort(arr1)
+  print("Отсортированный массив arr1: ")
+  printArr(arr1)
+  print("Массив arr2: ")
+  printArr(arr2)
+  bubbleSort(arr2)
+  print("Отсортированный массив arr2: ")
+  printArr(arr2)
+  print("\n")
+}
+
+fun printArr(arr: Array<Int>) {
+  for (i in 0 until arr.size) {
+    print(arr[i])
+    print(" ")
+  }
+  print("\n")
+}
+
+fun bubbleSort(arr: Array<Int>) {
+  val n = arr.size
+  for (i in 0 until n - 1) {
+    for (j in 0 until n - i - 1) {
+      if (arr[j] > arr[j + 1]) {
+        val temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j + 1] = temp
+      }
+    }
+  }
+}
