@@ -1,0 +1,90 @@
+import kotlin.math.*
+
+fun main() {
+  println("* * * ЛАБАРАТОРНАЯ_РАБОТА_№5 * * *")
+  do {
+    println("- - - - - - - - - - - - - - - - - - - -")
+    println("1.")
+    println("2.")
+    println("3.")
+    println("0. Выход")
+    print("- - - - - - - - - - - - - - - - - - - -\n> ")
+    var x = readLine()!!.toInt()
+    when (x) {
+      1 -> func1()
+      2 -> func2()
+      3 -> func3()
+      0 -> print(". . . . В ы х о д . . . .")
+      else -> println("Некорректное значение!\n")
+    }
+  } while (x != 0)
+}
+
+fun func1() {
+  println("Введите два слова через пробел:")
+  var str = readLine()!!.toString()
+  var words = (str.lowercase()).split(" ")
+  if (words[0].equals(words[1])) {
+    println("true")
+  } else {
+    println("false")
+  }
+}
+
+fun func2() {
+  println("Введите строки A и B через пробел:")
+  var str = readLine()!!.toString()
+  var str_split = str.split(" ")
+  var str_a = str_split[0].toCharArray()
+  var str_b = str_split[1].toCharArray()
+  var i: Int = 0
+  var count: Int = 0
+  while (i != str_a.count()) {
+    if (str_a[i] == str_b[0]) {
+      str_a[i] = '_'
+      count++
+    }
+    print(str_a[i])
+    i++
+  }
+  println(" -> $count")
+}
+
+fun func3() {
+  println("Введите описание трубы и обозначение затора:")
+  var str = readLine()!!.toString()
+  var str_split = str.split(" ")
+  var str_a = str_split[0].toCharArray()
+  var str_b = str_split[1].toCharArray()
+  for (char in str_a) {
+    if (char != '=') {
+      println("Неверное описание трубы!\n")
+      return
+    }
+  }
+  println("1. трубу прорвало в начале")
+  println("2. трубу прорвало в середине")
+  println("3. трубу прорвало в конце")
+  println("4. трубу не прорвало")
+  var breakdown = 0
+  var x = readLine()!!.toInt()
+  when (x) {
+    1 -> breakdown = 0
+    2 -> breakdown = ((str_a.count() - 1) / 2) - (str_b.count() / 2)
+    3 -> breakdown = abs(str_a.count() - str_b.count())
+    4 -> breakdown = -1
+    else -> println("Некорректное значение!\n")
+  }
+  if (breakdown >= 0) {
+    var i: Int = 0
+    while (i != str_b.count()) {
+      str_a[breakdown] = str_b[i]
+      breakdown++
+      i++
+    }
+  }
+  for (char in str_a) { 
+    print(char) 
+  }
+  println("\n")
+}
