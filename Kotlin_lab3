@@ -1,0 +1,160 @@
+import kotlin.math.*
+
+fun main() {
+  println("* * * ЛАБАРАТОРНАЯ_РАБОТА_№4 * * *")
+  do {
+    println("- - - - - - - - - - - - - - - - - - - -")
+    println("1.")
+    println("2.")
+    println("3.")
+    println("4.")
+    println("5.")
+    println("6.")
+    println("7.")
+    println("8.")
+    println("9.")
+    println("10.")
+    println("0. Выход")
+    print("- - - - - - - - - - - - - - - - - - - -\n> ")
+    var x = readLine()!!.toInt()
+    when (x) {
+      1 -> func1()
+      2 -> func2()
+      3 -> func3()
+      4 -> func4()
+      5 -> func5()
+      6 -> func6()
+      7 -> func7()
+      8 -> func8()
+      9 -> func9()
+      10 -> func10()
+      0 -> print(". . . . В ы х о д . . . .")
+      else -> println("Некорректное значение!\n")
+    }
+  } while (x != 0)
+}
+
+fun func1() {
+  print("Введите целое число: ")
+  var a = readLine()!!.toInt()
+  println(a.toDouble() / 10)
+}
+
+fun func2() {
+  println("Введите 2 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  var c: Float = 5f * (a + b)
+  println("$c")
+}
+
+fun func3() {
+  println("Введите 2 числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  var reversed_a = 0
+  var reversed_b = 0
+  while (a != 0 && b != 0) {
+    val digit_a = a % 10
+    val digit_b = b % 10
+    reversed_a = reversed_a * 10 + digit_a
+    reversed_b = reversed_b * 10 + digit_b
+    a /= 10
+    b /= 10
+  }
+  println("$reversed_b $reversed_a")
+}
+
+fun func4() {
+  print("Введите трёxзначное число: ")
+  var a = readLine()!!.toInt()
+  // 1.
+  var num = a
+  var reversed = 0
+  while (num != 0) {
+    val digit = num % 10
+    reversed = reversed * 10 + digit
+    num /= 10
+  }
+  println("1 способ: $reversed")
+  // 2.
+  var revStr: String = (a.toString()).reversed()
+  println("2 способ: $revStr")
+}
+
+fun func5() {
+  println("Введите 2 трёхзначных числа: ")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  var a_sum = 0
+  var b_sum = 0
+  while (a != 0) {
+    val digit_a = a % 10
+    val digit_b = b % 10
+    a_sum += digit_a
+    b_sum += digit_b
+    a /= 100
+    b /= 100
+  }
+  println("сумма 1-го и 3-го разрядов:\n1. $a_sum\n2. $b_sum")
+  println("Общая сумма: " + (a_sum + b_sum))
+}
+
+fun func6() {
+  println("Введите целое четырёхзначное число:")
+  var a = readLine()!!.toInt()
+  if (a >= 1000 && a <= 9999) {
+    var reversed = 0
+    while (a != 0) {
+      val digit = a % 10
+      reversed = reversed * 10 + digit
+      a /= 10
+    }
+    println("$reversed")
+  } else {
+    println("Некорректный ввод...")
+  }
+}
+
+fun func7() {
+  println("Введите строку:")
+  var str = readLine()!!.toString()
+  var i = 0
+  while (i < 3) {
+    print("$str ")
+    i++
+  }
+  print("\n")
+}
+
+fun func8() {
+  println("Введите строку:")
+  var str = readLine()!!.toString()
+  val words = str.split(" ")
+  for (word in words.reversed()) {
+    print(word + " ")
+  }
+  println("\n")
+}
+
+fun func9() {
+  println("Введите строку:")
+  var str = readLine()!!.toString()
+  println(str.uppercase() + " " + str.lowercase())
+}
+
+fun func10() {
+  println("Введите строку:")
+  var str = readLine()!!.toCharArray()
+  var i = 0
+  while (i != str.count()) {
+    if (i == 1) {
+      str[i] = 'F'
+    }
+    if (i == (str.count() - 2)) {
+      str[i] = 'L'
+    }
+    i++
+  }
+  println(str)
+}
