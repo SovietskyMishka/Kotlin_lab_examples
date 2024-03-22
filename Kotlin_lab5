@@ -1,0 +1,113 @@
+import kotlin.math.*
+
+fun main() {
+  println("* * * ЛАБАРАТОРНАЯ_РАБОТА_№6 * * *")
+  do {
+    println("- - - - - - - - - - - - - - - - - - - -")
+    println("1.")
+    println("2.")
+    println("3.")
+    println("4.")
+    println("5.")
+    println("6.")
+    println("7.")
+    println("0. Выход")
+    print("- - - - - - - - - - - - - - - - - - - -\n> ")
+    var x = readLine()!!.toInt()
+    when (x) {
+      1 -> func1()
+      2 -> func2()
+      3 -> func3()
+      4 -> func4()
+      5 -> func5()
+      6 -> func6()
+      7 -> func7()
+      0 -> print(". . . . В ы х о д . . . .")
+      else -> println("Некорректное значение!\n")
+    }
+  } while (x != 0)
+}
+
+fun func1() {
+  println("Введите 2 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  if (a % b == 0) {
+    println("Делится нацело: " + (a / b))
+  } else {
+    println("Не делится нацело: " + (a.toDouble() / b.toDouble()))
+  }
+}
+
+fun func2() {
+  println("Введите четырёхзначное целое число:")
+  var a = readLine()!!.toInt()
+  if (a >= 1000 && a <= 9999) {
+    var first =
+        (((a % 100) - (a % 10)) * 100) + ((a % 1000) - (a % 100)) + ((a / 1000) * 10) + (a % 10)
+    println(first)
+  } else {
+    println("Некорректное значение!")
+  }
+}
+
+fun func3() {
+  print("Введите год: ")
+  var year = readLine()!!.toInt()
+  var leapyear = (year > 1584 && ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)))
+  if (leapyear) {
+    println("$year - високосный год")
+  } else {
+    println("$year - НЕ високосный год")
+  }
+}
+
+fun func4() {
+  print("Введите целое число: ")
+  var num = readLine()!!.toInt()
+  var mdig = 0
+  while (num > 0) {
+    mdig = max(mdig, num % 10)
+    num /= 10
+  }
+  println("Максимальная цифра - $mdig")
+}
+
+fun func5() {
+  print("Введите целое число: ")
+  var num = readLine()!!.toInt()
+  var count = 0
+  while (num > 0) {
+    num /= 10
+    count++
+  }
+  println("Количество разрядов: $count")
+}
+
+fun func6() {
+  print("Введите целое число: ")
+  var num = readLine()!!.toInt()
+  var evencount = 0
+  var oddcount = 0
+  while (num > 0) {
+    if ((num % 10) % 2 == 0) {
+      evencount++
+    } else {
+      oddcount++
+    }
+    num /= 10
+  }
+  println("Количество чётных - $evencount\nКоличество нечётных - $oddcount")
+}
+
+fun func7() {
+  println("Введите 2 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  while (b != 0) {
+    var tmp = a % b
+    a = b
+    b = tmp
+  }
+  println("НОД = $a")
+}
