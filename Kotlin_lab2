@@ -1,0 +1,157 @@
+import kotlin.math.*
+
+fun main() {
+  println("* * * ЛАБАРАТОРНАЯ_РАБОТА_№3 * * *")
+  do {
+    println("- - - - - - - - - - - - - - - - - - - -")
+    println("1.")
+    println("2.")
+    println("3.")
+    println("4.")
+    println("5.")
+    println("6.")
+    println("7.")
+    println("8.")
+    println("9.")
+    println("10.")
+    println("0. Выход")
+    print("- - - - - - - - - - - - - - - - - - - -\n> ")
+    var x = readLine()!!.toInt()
+    when (x) {
+      1 -> func1()
+      2 -> func2()
+      3 -> func3()
+      4 -> func4()
+      5 -> func5()
+      6 -> func6()
+      7 -> func7()
+      8 -> func8()
+      9 -> func9()
+      10 -> func10()
+      0 -> print(". . . . В ы х о д . . . .")
+      else -> println("Некорректное значение!\n")
+    }
+  } while (x != 0)
+}
+
+fun func1() {
+  print("Введите переменную a типа Double: ")
+  var a = readLine()!!.toDouble()
+  println(a - 1)
+}
+
+fun func2() {
+  print("а = ")
+  var a = round(readLine()!!.toDouble())
+  print("b = ")
+  var b = round(readLine()!!.toDouble())
+  println("$a $b")
+  if (a == b) {
+    println("Да\n")
+  } else {
+    println("Нет\n")
+  }
+}
+
+fun func3() {
+  println("Введите 4 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  var c = readLine()!!.toInt()
+  var d = readLine()!!.toInt()
+  println("Наибольший элемент = " + maxOf(a, b, c, d) + "\n")
+}
+
+fun func4() {
+  var a = readLine()!!.toDouble()
+  var b = sin(a) * cos(a)
+  println(b)
+}
+
+fun func5() {
+  print("Тонн груза: ")
+  var m = readLine()!!.toDouble()
+  print("Грузоподъёмность машин: ")
+  var n = readLine()!!.toDouble()
+  println("Кол-во машин: " + (ceil(m / n)).toInt() + "\n")
+}
+
+fun func6() {
+  println("Введите 4 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  var c = readLine()!!.toInt()
+  var d = readLine()!!.toInt()
+  println("Значение E (true или false):")
+  var E = readLine()!!.toBoolean()
+  if (E) {
+    println("Минимальное число = " + minOf(a, b, c, d) + "\n")
+  } else {
+    println("Максимальное число = " + maxOf(a, b, c, d) + "\n")
+  }
+}
+
+fun func7() {
+  println("Введите 2 целых числа:")
+  var a = readLine()!!.toInt()
+  var b = readLine()!!.toInt()
+  if ((a + b) % 2 == 0) {
+    println("Минимальное число = " + minOf(a, b) + "\n")
+  } else {
+    println("Максимальное число = " + maxOf(a, b) + "\n")
+  }
+}
+
+fun func8() {
+  var A = readLine()!!.toInt()
+  var B = readLine()!!.toDouble()
+  when (A) {
+    1 -> println(B)
+    2 -> println(floor(B).toInt())
+    3 -> println(ceil(B).toInt())
+    4 -> println(round(B))
+    5 -> println(abs(B))
+    6 -> println(sqrt(B))
+    else -> println(2 * B.pow(2))
+  }
+}
+
+fun func9() {
+  print("Месячная з\\п Мамы: ")
+  var A = readLine()!!.toInt()
+  print("Месячная з\\п Папы: ")
+  var B = readLine()!!.toInt()
+  print("Кол-во членов семьи: ")
+  var C = readLine()!!.toInt()
+  var memberPayment = (A + B) / C
+  val discount: Int =
+      when {
+        (memberPayment >= 20000) -> 0
+        (memberPayment >= 18000 && memberPayment < 20000) -> 10
+        (memberPayment >= 16000 && memberPayment < 18000) -> 20
+        (memberPayment >= 12000 && memberPayment < 16000) -> 30
+        (memberPayment >= 10000 && memberPayment < 12000) -> 40
+        (memberPayment < 10000) -> 50
+        else -> 50
+      }
+  println("Скидка: $discount%")
+  var totalDiscount = 1000 * (100 - discount)
+  println("Стоимость путёвки с учётом скидки: $totalDiscount руб.\n")
+}
+
+fun func10() {
+  print("Сколько раз в день питается: ")
+  var A = readLine()!!.toInt()
+  print("Стоимость 1-го обеда: ")
+  var B = readLine()!!.toDouble()
+  print("Стоимость 1-го дня проживания: ")
+  var C = readLine()!!.toDouble()
+  print("Стоимость пути на поезде в одно направление: ")
+  var D = readLine()!!.toDouble()
+  print("Смена длится дней: ")
+  var E = readLine()!!.toInt()
+  print("Персональная скидка: ")
+  var F = readLine()!!.toDouble()
+  var cost = (((A * E) * B) + (C * E) + (D * 2)) * ((100 - F) / 100)
+  println("Стоимость путёвки: $cost руб.")
+}
